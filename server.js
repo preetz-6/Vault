@@ -325,6 +325,6 @@ app.post('/api/exit', (req, res) => {
 
 // Port configuration
 const PORT = process.env.PORT || 5005;
-app.listen(PORT, () => {
+app.listen(PORT, '127.0.0.1', () => {
   console.log(`Vault backend running on http://localhost:${PORT}`);
 });
