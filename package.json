@@ -1,0 +1,21 @@
+{
+  "name": "vault-cli",
+  "version": "1.0.0",
+  "description": "Personal password manager CLI",
+  "main": "vault.js",
+  "bin": {
+    "vault": "./vault.js"
+  },
+  "scripts": {
+    "start": "node vault.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
+    "chalk": "^4.1.2",
+    "cli-table3": "^0.6.3",
+    "dotenv": "^16.3.1",
+    "express": "^5.2.1",
+    "inquirer": "^8.2.6",
+    "nanoid": "^3.3.7"
+  }
+}
