@@ -876,17 +876,27 @@ select {
   animation: modalScale 0.2s ease-out;
 }
 
+/* Forms inside modals must also be flex-column so footer stays pinned */
+.modal-card form {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1;
+  overflow: hidden;
+}
+
 .modal-header {
-  padding: 24px 30px;
+  padding: 20px 28px;
   border-bottom: 1px solid var(--border-light);
   display: flex;
   justify-content: space-between;
   align-items: center;
   background: #030712;
+  flex-shrink: 0;
 }
 
 .modal-header h2 {
-  font-size: 1.25rem;
+  font-size: 1.15rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -900,25 +910,30 @@ select {
   font-size: 1.8rem;
   cursor: pointer;
   line-height: 1;
+  flex-shrink: 0;
 }
 .btn-close:hover {
   color: var(--danger);
 }
 
 .modal-body {
-  padding: 30px;
+  padding: 24px 28px;
   overflow-y: auto;
   flex: 1;
   min-height: 0;
+  /* Custom scrollbar for the body */
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) #000000;
 }
 
 .modal-footer {
-  padding: 20px 30px;
+  padding: 16px 28px;
   border-top: 1px solid var(--border-light);
   display: flex;
   justify-content: flex-end;
-  gap: 12px;
+  gap: 10px;
   background: #030712;
+  flex-shrink: 0;
 }
 
 /* Detail Display Rows */
@@ -1172,25 +1187,28 @@ select {
 .cat-select-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
+  gap: 6px;
   margin-bottom: 4px;
 }
 .cat-select-btn {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 4px;
-  padding: 12px 6px;
+  padding: 14px 8px;
   background: #000000;
   border: 1px solid var(--border-light);
   color: var(--text-muted);
   cursor: pointer;
   font-family: var(--font-sans);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.3px;
   transition: all var(--transition-fast);
+  text-align: center;
+  line-height: 1.3;
 }
 .cat-select-btn:hover {
   border-color: var(--primary);
@@ -1205,8 +1223,31 @@ select {
 }
 .cat-select-icon { display: none; }
 
+/* ── FORM FIELD IMPROVEMENTS ─────────────────────────────────────────────────── */
+/* Tighter groups inside modal */
+.modal-body .form-group {
+  margin-bottom: 16px;
+}
+.modal-body .form-group:last-child {
+  margin-bottom: 0;
+}
+/* Section divider between category selector and dynamic fields */
+#form-dynamic-fields {
+  padding-top: 4px;
+}
+/* Make textarea shorter in modal context */
+.modal-body textarea {
+  min-height: 80px;
+  max-height: 140px;
+}
+
 /* ── TOGGLE SWITCH ROW ───────────────────────────────────────────────────────── */
-.toggle-row { margin-bottom: 14px; }
+.toggle-row {
+  margin-top: 4px;
+  margin-bottom: 0;
+  padding: 14px 0 0 0;
+  border-top: 1px solid var(--border-light);
+}
 .toggle-label {
   display: flex;
   align-items: center;
@@ -1248,7 +1289,21 @@ select {
   background: var(--accent);
 }
 
-/* ── SECRET GUARD UI ─────────────────────────────────────────────────────────── */
+/* Secret guard panel */
+#form-secret-guard-fields {
+  background: rgba(0, 102, 255, 0.04);
+  border: 1px solid rgba(0, 102, 255, 0.2);
+  padding: 16px;
+  margin-top: 12px;
+}
+#form-secret-guard-fields .form-group {
+  margin-bottom: 14px;
+}
+#form-secret-guard-fields .form-group:last-child {
+  margin-bottom: 0;
+}
+
+/* ── SECRET GUARD UI (view modal) ────────────────────────────────────────────── */
 .guard-container { width: 100%; }
 .guard-banner {
   display: flex;
